@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="icon.png" />
+    <title>Weather</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then(
+              (registration) => {
+                console.log(
+                  "Регестрация serviceWorker прошла успешно с областию видимости: ",
+                  registration.scope
+                );
+              },
+              (err) => {
+                console.log("Ошибка при регестрации serviceWorker: ", err);
+              }
+            )
+            .catch((err) => console.log(err));
+        });
+      } else console.log("ServiceWorker не поддерживается");
+    </script>
+  </body>
+</html>
